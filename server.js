@@ -15,7 +15,11 @@ const categoryRoutes = require('./routes/categoryRoutes');
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: '*',  // ✅ Allow all origins (Agar specific domain chahiye to Netlify ka URL yaha add karo)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 
 mongoose.connect(process.env.MONGO_URI, {
